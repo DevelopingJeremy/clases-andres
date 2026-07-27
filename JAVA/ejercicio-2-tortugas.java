@@ -143,127 +143,102 @@ public class ProyectoAndres {
     }
 
     // Mueve la tortuga
-
     public static void moverTortuga(int pasos) {
 
         for (int i = 0; i < pasos; i++) {
 
             if (plumaAbajo) {
-
                 piso[filaTortuga][columnaTortuga] = '*';
-
             }
 
             switch (direccion) {
 
+                // Arriba
                 case 0 -> {
                     if (filaTortuga > 0) {
-
                         filaTortuga--;
-
                     }
                 }
 
+                // Derecha
                 case 1 -> {
                     if (columnaTortuga < 29) {
-
                         columnaTortuga++;
-
                     }
                 }
 
+                // Abajo
                 case 2 -> {
                     if (filaTortuga < 29) {
-
                         filaTortuga++;
-
                     }
                 }
 
+                // Izquierda
                 case 3 -> {
                     if (columnaTortuga > 0) {
-
                         columnaTortuga--;
-
                     }
                 }
-                    
+
             }
 
-        }
-
-        // Marca la posición final de la tortuga
-
-        if (plumaAbajo) {
-
-            piso[filaTortuga][columnaTortuga] = '*';
+            if (plumaAbajo) {
+                piso[filaTortuga][columnaTortuga] = '*';
+            }
 
         }
 
     }
 
     // Mueve la liebre
-
     public static void moverLiebre(int pasos) {
 
-        // La liebre siempre se mueve el doble
-        int movimiento = pasos * 2;
+        pasos *= 2;
 
-        for (int i = 0; i < movimiento; i++) {
+        for (int i = 0; i < pasos; i++) {
 
-            // Se marca con una letra diferente para distinguirla
-
-            piso[filaLiebre][columnaLiebre] = '+';
+            if (plumaAbajo) {
+                piso[filaLiebre][columnaLiebre] = '+';
+            }
 
             switch (direccion) {
 
+                // Tortuga arriba -> Liebre abajo
                 case 0 -> {
                     if (filaLiebre < 29) {
-
                         filaLiebre++;
-
                     }
                 }
 
+                // Tortuga derecha -> Liebre izquierda
                 case 1 -> {
                     if (columnaLiebre > 0) {
-
                         columnaLiebre--;
-
                     }
                 }
 
+                // Tortuga abajo -> Liebre arriba
                 case 2 -> {
                     if (filaLiebre > 0) {
-
                         filaLiebre--;
-
                     }
                 }
 
+                // Tortuga izquierda -> Liebre derecha
                 case 3 -> {
                     if (columnaLiebre < 29) {
-
                         columnaLiebre++;
-
                     }
                 }
 
             }
-            // Si la tortuga va arriba,
-            // la liebre baja
-            // Si la tortuga va derecha,
-            // la liebre va izquierda
-            // Si la tortuga va abajo,
-            // la liebre sube
-            // Si la tortuga va izquierda,
-            // la liebre va derecha
-            
+
+            if (plumaAbajo) {
+                piso[filaLiebre][columnaLiebre] = '+';
+            }
+
         }
-
-        // Marca la posición final
-
-        piso[filaLiebre][columnaLiebre] = 'L';
 
     }
 
@@ -287,7 +262,7 @@ public class ProyectoAndres {
                 }
 
                 // Si la liebre está aquí,
-                // se imprime una H
+                // se imprime una L
 
                 else if (i == filaLiebre && j == columnaLiebre) {
 
