@@ -292,7 +292,7 @@ public class ProyectoAndres {
 
                 else {
 
-                    System.out.print(piso[filaActual][columnas] + " ");
+                    System.out.print(piso[filaActual][columnaActual] + " ");
 
                 }
 
