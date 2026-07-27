@@ -85,28 +85,42 @@ public class ProyectoAndres {
 
             switch (comando) {
 
-                case 1 -> plumaAbajo = false;
+                case 1:
+                    plumaAbajo = false;
+                    break;
+                    
+                case 2 : 
+                plumaAbajo = true;
+                break;
 
-                case 2 -> plumaAbajo = true;
+                case 3 :
+                    girarDerecha();
+                    break;
+                    
+                case 4 :
+                    girarIzquierda();
+                    break
 
-                case 3 -> girarDerecha();
-
-                case 4 -> girarIzquierda();
-
-                case 5 -> {
+                case 5 : 
                     System.out.print("¿Cuántos pasos desea avanzar?: ");
                     int pasos = teclado.nextInt();
 
                     moverTortuga(pasos);
 
                     moverLiebre(pasos);
-                }
+                    break;
 
-                case 6 -> imprimirPiso();
+                case 6 :
+                imprimirPiso();
+                break;
 
-                case 9 -> System.out.println("Fin del programa.");
+                case 9 :
+                    System.out.println("Fin del programa.");
+                    break;
 
-                default -> System.out.println("Comando inválido.");
+                default : 
+                System.out.println("Comando inválido.");
+                break;
 
             }
 
@@ -155,32 +169,32 @@ public class ProyectoAndres {
             switch (direccion) {
 
                 // Arriba
-                case 0 -> {
+                case 0 :
                     if (filaTortuga > 0) {
                         filaTortuga--;
                     }
-                }
+                break;
 
                 // Derecha
-                case 1 -> {
+                case 1: 
                     if (columnaTortuga < 29) {
                         columnaTortuga++;
                     }
-                }
+                break;
 
                 // Abajo
-                case 2 -> {
+                case 2 : 
                     if (filaTortuga < 29) {
                         filaTortuga++;
                     }
-                }
+                break;
 
                 // Izquierda
-                case 3 -> {
+                case 3 ; 
                     if (columnaTortuga > 0) {
                         columnaTortuga--;
                     }
-                }
+                break;
 
             }
 
@@ -206,32 +220,32 @@ public class ProyectoAndres {
             switch (direccion) {
 
                 // Tortuga arriba -> Liebre abajo
-                case 0 -> {
+                case 0 : 
                     if (filaLiebre < 29) {
                         filaLiebre++;
                     }
-                }
+                break;
 
                 // Tortuga derecha -> Liebre izquierda
-                case 1 -> {
+                case 1 : 
                     if (columnaLiebre > 0) {
                         columnaLiebre--;
                     }
-                }
+                break;
 
                 // Tortuga abajo -> Liebre arriba
-                case 2 -> {
+                case 2 : 
                     if (filaLiebre > 0) {
                         filaLiebre--;
                     }
-                }
+                break;
 
                 // Tortuga izquierda -> Liebre derecha
-                case 3 -> {
+                case 3 : 
                     if (columnaLiebre < 29) {
                         columnaLiebre++;
                     }
-                }
+                break;
 
             }
 
@@ -249,8 +263,10 @@ public class ProyectoAndres {
 
         System.out.println();
 
+        // Ir moviendose de fila
         for (int filaActual = 0; filaActual < piso.length; filaActual++) {
 
+            // Ir moviendose de columnas
             for (int columnas = 0; columnas < piso[filaActual].length; columnas++) {
 
                 // Si la tortuga está en esta posición,
