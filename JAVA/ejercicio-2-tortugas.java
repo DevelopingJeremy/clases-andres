@@ -147,7 +147,8 @@ public class ProyectoAndres {
 
         for (int i = 0; i < pasos; i++) {
 
-            if (plumaAbajo) {
+            // Verificar si la pluma esta escribiendo
+            if (plumaAbajo == true) {
                 piso[filaTortuga][columnaTortuga] = '*';
             }
 
@@ -183,7 +184,7 @@ public class ProyectoAndres {
 
             }
 
-            if (plumaAbajo) {
+            if (plumaAbajo == true) {
                 piso[filaTortuga][columnaTortuga] = '*';
             }
 
@@ -198,7 +199,7 @@ public class ProyectoAndres {
 
         for (int i = 0; i < pasos; i++) {
 
-            if (plumaAbajo) {
+            if (plumaAbajo == true) {
                 piso[filaLiebre][columnaLiebre] = '+';
             }
 
@@ -234,7 +235,7 @@ public class ProyectoAndres {
 
             }
 
-            if (plumaAbajo) {
+            if (plumaAbajo == true) {
                 piso[filaLiebre][columnaLiebre] = '+';
             }
 
@@ -248,14 +249,14 @@ public class ProyectoAndres {
 
         System.out.println();
 
-        for (int i = 0; i < piso.length; i++) {
+        for (int filaActual = 0; filaActual < piso.length; filaActual++) {
 
-            for (int j = 0; j < piso[i].length; j++) {
+            for (int columnas = 0; columnas < piso[filaActual].length; columnas++) {
 
                 // Si la tortuga está en esta posición,
                 // se imprime una T
 
-                if (i == filaTortuga && j == columnaTortuga) {
+                if (filaActual == filaTortuga && columnas == columnaTortuga) {
 
                     System.out.print("T ");
 
@@ -264,7 +265,7 @@ public class ProyectoAndres {
                 // Si la liebre está aquí,
                 // se imprime una L
 
-                else if (i == filaLiebre && j == columnaLiebre) {
+                else if (filaActual == filaLiebre && columnaActual == columnaLiebre) {
 
                     System.out.print("L ");
 
@@ -275,7 +276,7 @@ public class ProyectoAndres {
 
                 else {
 
-                    System.out.print(piso[i][j] + " ");
+                    System.out.print(piso[filaActual][columnas] + " ");
 
                 }
 
