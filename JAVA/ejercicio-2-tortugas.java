@@ -99,7 +99,7 @@ public class ProyectoAndres {
                     
                 case 4 :
                     girarIzquierda();
-                    break
+                    break;
 
                 case 5 : 
                     System.out.print("¿Cuántos pasos desea avanzar?: ");
@@ -190,7 +190,7 @@ public class ProyectoAndres {
                 break;
 
                 // Izquierda
-                case 3 ; 
+                case 3:
                     if (columnaTortuga > 0) {
                         columnaTortuga--;
                     }
@@ -267,12 +267,12 @@ public class ProyectoAndres {
         for (int filaActual = 0; filaActual < piso.length; filaActual++) {
 
             // Ir moviendose de columnas
-            for (int columnas = 0; columnas < piso[filaActual].length; columnas++) {
+            for (int columnaActual = 0; columnaActual < piso[filaActual].length; columnaActual++) {
 
                 // Si la tortuga está en esta posición,
                 // se imprime una T
 
-                if (filaActual == filaTortuga && columnas == columnaTortuga) {
+                if (filaActual == filaTortuga && columnaActual == columnaTortuga) {
 
                     System.out.print("T ");
 
