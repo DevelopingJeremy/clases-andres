@@ -13,44 +13,63 @@ public class ProyectoAndres {
     static final char CENIZA = 'A';
 
     static Random random = new Random();
+    static Scanner sc = new Scanner(System.in);
+
+    static char[][] bosque = new char[FILAS][COLUMNAS];
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char[][] bosque = new char[FILAS][COLUMNAS];
-        inicializarBosque(bosque);
+        inicializarBosque();
+        menu();
+    }
+
+    // Muestra el menú inicial
+    public static void menu() {
+        System.out.println("===== SIMULACIÓN DE INCENDIO FORESTAL =====");
+
         int opcion = 0;
-        while (opcion != 3) {
-            mostrarBosque(bosque);
-            System.out.println("\n===== FOREST FIRE =====");
+        
+        do {
             System.out.println("1. Avanzar una iteración");
             System.out.println("2. Mostrar reglas");
             System.out.println("3. Salir");
             System.out.print("Opción: ");
             opcion = sc.nextInt();
-            if (opcion == 1) {
-                avanzarEstado(bosque);
+
+            switch (opcion) {
+                case 1:
+                    // Avanzar una iteración y mostrar el bosque
+                    avanzarEstado();
+                    mostrarBosque();
+                    break;
+                case 2:
+                    // Mostrar reglas
+                    mostrarReglas();
+                    break;
+                case 3:
+                    // Salir del programa
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    // Opción inválida
+                    System.out.println("Opción inválida. Intente nuevamente.");
             }
-            if (opcion == 2) {
-                mostrarReglas();
-            }
-        }
-        sc.close();
+        } while (opcion != 3);
     }
 
     // Inicializa el bosque
-    public static void inicializarBosque(char[][] bosque) {
+    public static void inicializarBosque() {
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
                 bosque[i][j] = ARBOL;
             }
         }
         // Colocar algunos incendios iniciales
-        bosque[4][4] = FUEGO;
-        bosque[2][7] = FUEGO;
+        bosque[random.nextInt(FILAS)][random.nextInt(COLUMNAS)] = FUEGO;
+        bosque[random.nextInt(FILAS)][random.nextInt(COLUMNAS)] = FUEGO;
     }
 
     // Mostrar bosque
-    public static void mostrarBosque(char[][] bosque) {
+    public static void mostrarBosque() {
         System.out.println();
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
@@ -73,12 +92,12 @@ public class ProyectoAndres {
     }
 
     // Avanza una generación
-    public static void avanzarEstado(char[][] bosque) {
+    public static void avanzarEstado() {
         char[][] nuevo = new char[FILAS][COLUMNAS];
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
                 if (bosque[i][j] == ARBOL) {
-                    if (tieneVecinoEnFuego(bosque, i, j)) {
+                    if (tieneVecinoEnFuego(i, j)) {
                         nuevo[i][j] = FUEGO;
                     } else {
                         nuevo[i][j] = ARBOL;
@@ -89,9 +108,8 @@ public class ProyectoAndres {
                     // 2% de probabilidad de que la ceniza vuelva a encenderse
                     if (random.nextInt(100) < 2) {
                         nuevo[i][j] = FUEGO;
-                    }
-                    // 5% de probabilidad de que la ceniza se regenere como árbol
-                    } else if (random.nextInt(100) < 5) {
+                    // 20% de probabilidad de que la ceniza se regenere como árbol
+                    } else if (random.nextInt(100) < 20) {
                         nuevo[i][j] = ARBOL;
                     } else {
                         nuevo[i][j] = CENIZA;
@@ -99,6 +117,7 @@ public class ProyectoAndres {
                 }
             }
         }
+        
 
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
@@ -108,7 +127,7 @@ public class ProyectoAndres {
     }
 
     // Verifica si existe un vecino en llamas
-    public static boolean tieneVecinoEnFuego(char[][] bosque, int fila, int columna) {
+    public static boolean tieneVecinoEnFuego(int fila, int columna) {
         for (int i = fila - 1; i <= fila + 1; i++) {
             for (int j = columna - 1; j <= columna + 1; j++) {
 
