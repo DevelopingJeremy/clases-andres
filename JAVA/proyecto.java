@@ -8,9 +8,9 @@ public class ProyectoAndres {
     static final int FILAS = 10;
     static final int COLUMNAS = 10;
 
-    static final char ARBOL = 'T';
+    static final char ARBOL = 'A';
     static final char FUEGO = 'F';
-    static final char CENIZA = 'A';
+    static final char CENIZA = 'C';
 
     static Random random = new Random();
     static Scanner sc = new Scanner(System.in);
