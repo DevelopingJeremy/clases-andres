@@ -82,7 +82,7 @@ public class Laboratorio3AndrésAguilera {
         if (fila >= FILAS || fila <= -1) {
             return false;
         }
-        
+
         if (columna >= COLUMNAS || columna <= -1) {
             return false;
         }
@@ -95,18 +95,68 @@ public class Laboratorio3AndrésAguilera {
     }
 
     //Metodo ejecutar recorrido 
+    public static int contarMovimientosDisponible(int fila, int columna) {
+
+        int movimientoValidos = 0;
+        int[] movimientoFila = {-2, -1, 1, 2, 2, 1, -1, -2};
+        int[] movimientoColumna = {1, 2, 2, 1, -1, -2, -2, -1};
+        for (int i = 0; i < 8; i++) {
+            int nuevaFila = fila + movimientoFila[i];
+            int nuevaColumna = columna + movimientoColumna[i];
+
+            if (esMovimientoValido(nuevaFila, nuevaColumna) == true) {
+                movimientoValidos = i++;
+
+            }
+
+        }
+        return movimientoValidos;
+
+    }
+
+    //Ejecutar recorrido
     public static void ejecutarRecorrido() {
+
+        int[] filasCandidatas = new int[8];
+        int[] columnasCandidatas = new int[8];
+        int menoresMovimientos = 9;
+        int posiblesCandidatos = 0;
+
+        int mensajesEntregados = 0;
+        int movimientosRealizados = 0;
+        boolean hayMovimientosValidos = true;
 
         int[] movimientoFila = {-2, -1, 1, 2, 2, 1, -1, -2};
         int[] movimientoColumna = {1, 2, 2, 1, -1, -2, -2, -1};
 
+        while (mensajesEntregados < 8 && hayMovimientosValidos) {
+            
+            menoresMovimientos = 9;
+            posiblesCandidatos = 0;
+            
+            for (int i = 0; i < 8; i++) {
+                int nuevaFila = filaCaballo + movimientoFila[i];
+                int nuevaColumna = columnaCaballo + movimientoColumna[i];
 
-        for (int i = 0; i < 8; i++) {
-            int nuevaFila = filaCaballo + movimientoFila[i];
-            int nuevaColumna = columnaCaballo + movimientoColumna[i];
+                if (esMovimientoValido(nuevaFila, nuevaColumna)) {
+                    int disponibles = contarMovimientosDisponible(nuevaFila, nuevaColumna); // 2
 
-            if (esMovimientoValido(nuevaFila, nuevaColumna) == true) {
+                    if (disponibles < menoresMovimientos) {
+                        menoresMovimientos = disponibles;
+                        posiblesCandidatos = 0;
+                        filasCandidatas[posiblesCandidatos] = nuevaFila;
+                        columnasCandidatas[posiblesCandidatos] = nuevaColumna;
+                        posiblesCandidatos++;
+                    }else if(disponibles == menoresMovimientos){
+                        filasCandidatas[posiblesCandidatos] = nuevaFila;
+                        columnasCandidatas[posiblesCandidatos] = nuevaColumna;
+                        posiblesCandidatos++;  
+                    }
+                }
 
+            }
+            if (posiblesCandidatos == 0){
+                hayMovimientosValidos = false;
             }
 
         }
