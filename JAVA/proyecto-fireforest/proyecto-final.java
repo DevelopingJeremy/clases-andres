@@ -13,15 +13,14 @@ public class ProyectoAndres {
         ProyectoMatriz.IniciarBosque();
         ProyectoMatriz.MostrarBosque();
 
-        Menu menu = new ProyectoAndres().new Menu();
-        menu.ejecutar();
+        Menu.ejecutar();
     }
 
-    public class Menu {
+    public static class Menu {
 
         Scanner entrada = new Scanner(System.in);
 
-        public void mostrarMenu() {
+        public static void mostrarMenu() {
             System.out.println("\n===== FOREST FIRE =====");
             System.out.println("1. Mostrar reglas");
             System.out.println("2. Avanzar generación");
@@ -63,7 +62,7 @@ public class ProyectoAndres {
             }
         }
 
-        public void ejecutar() {
+        public static void ejecutar() {
 
             int opcion;
 
@@ -229,3 +228,27 @@ public class ProyectoAndres {
         }
     }
 }
+
+
+
+
+
+
+
+public class Persona {
+    this.nombre = nombre;
+
+    public void decirHola() {
+        system.out.println("Hola soy " + this.nombre);
+    }
+
+    public static void caminar() {
+        system.out.println("Estoy caminando");
+    }
+}
+
+Persona andres = new Persona("Andres");
+andres.decirHola();
+andres.caminar();
+
+Persona.caminar();
